@@ -110,7 +110,7 @@ values ('JESTY','ANALYST',65646,'1991-01-10',3200,null,2001);
 <tr><td class="pt-3" align="center" colspan="2"> 
 <input type="submit" name="registerbtn" value="SAVE" class="btn btn-success"/>
 <cfif IsDefined("url.tide") and  IsNumeric(editid) >
-<input type="hidden" name="updatedata" value="<cfoutput>#editid#</cfoutput>"
+<input type="hidden" name="updatedata" value="<cfoutput>#editid#</cfoutput>"/>
 </cfif>
 
 
@@ -137,7 +137,7 @@ values ('JESTY','ANALYST',65646,'1991-01-10',3200,null,2001);
 <table align="center" class="table table-bordered">
 
 <thead>
-<tr>
+<tr class="text-center">
     <th>Emp#ID</th>
     <th>NAME</th>
     <th>JOB</th>
@@ -170,7 +170,7 @@ values ('JESTY','ANALYST',65646,'1991-01-10',3200,null,2001);
     <td>
     <cfset key = "eid">
     <a class="btn btn-danger"  style="color:white" href="cf_cruddeleteemployee.cfm?die=#URLEncodedFormat(Encrypt(getemployees.emp_id, "#key#"))#" ><i class="fa fa-trash"></i></a></td>
-    <td><a class="btn btn-info" style="color:white" href=""><i class="fa fa-file-pdf" aria-hidden="true"></i></a></td>
+    <td><a download class="btn btn-info" href="cf_getemployee_details.cfm?empids=#getemployees.emp_id#" style="color:white" href=""><i class="fa fa-file-pdf" aria-hidden="true"></i></a></td>
 </tr>
 </cfoutput>
 </cfloop>
