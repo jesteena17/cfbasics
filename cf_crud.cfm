@@ -93,7 +93,7 @@ values ('JESTY','ANALYST',65646,'1991-01-10',3200,null,2001);
 </td></tr>
 <tr><th>Hire date</th><td><input type="date" class="form-control" name="hiredate"  value="<cfoutput>#LSDateFormat(hiredate,'yyyy-mm-dd')#</cfoutput>" required/></td></tr>
 <tr><th>Salary</th><td><input type="text" class="form-control" name="salary" value="<cfoutput> #salary# </cfoutput>" required/></td></tr>
-<tr><th>Commission</th><td><input type="text" class="form-control"  name="commission" value="<cfoutput> #commission# </cfoutput>" required/></td></tr>
+<tr><th>Commission</th><td><input type="text" class="form-control"  name="commission" value="<cfoutput> #commission EQ ''?0.00:commission# </cfoutput>" required/></td></tr>
 <tr><th>Department Id</th><td><select   class="form-select" name="departmentid" value="<cfoutput> #departmentid# </cfoutput>" required>
 <cfoutput>
 <option value="">--select department--</option>
@@ -107,7 +107,14 @@ values ('JESTY','ANALYST',65646,'1991-01-10',3200,null,2001);
 
 
 
-<tr><td class="pt-3" align="center" colspan="2"> <input type="submit" name="registerbtn" value="SAVE" class="btn btn-success"/></td></tr>
+<tr><td class="pt-3" align="center" colspan="2"> 
+<input type="submit" name="registerbtn" value="SAVE" class="btn btn-success"/>
+<cfif IsDefined("url.tide") and  IsNumeric(editid) >
+<input type="hidden" name="updatedata" value="<cfoutput>#editid#</cfoutput>"
+</cfif>
+
+
+</td></tr>
 </form>
 
 </table>
