@@ -6,6 +6,8 @@
     serverName=cgi.server_name;
     serverPort=cgi.server_port;
 severSecure=cgi.server_port_secure;
+// current page
+currentopenedpage=cgi.script_name;
 
 // to handle error if no params found by setting a default value
 // set this before the variable declaration
@@ -34,6 +36,8 @@ brands="acer,lenovo,hp,dell";
 <b>
 <cfoutput>
    CGI -  I am running #serverName# using a port #serverPort# which is #severSecure?'secured':'not secured'#
+<br>
+   am in the page #currentopenedpage#
      <!-- output - I am running localhost using a port 8500 which is not secured -->
      <br>
 STRUCTURE -father is #family.father# mother is #family.mother#

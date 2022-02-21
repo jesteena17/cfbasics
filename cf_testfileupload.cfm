@@ -108,6 +108,7 @@ values ('JESTY','ANALYST',65646,'1991-01-10',3200,null,2001);
 
 </select></td></tr>
 
+<tr><td>Photo<td><input type="file" name="FiletoUpload" size="45"> </td>
 
 <tr><td class="pt-3" align="center" colspan="2"> 
 <input type="submit" name="registerbtn" value="SAVE" class="btn btn-success"/>
