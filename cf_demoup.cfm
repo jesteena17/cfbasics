@@ -36,6 +36,14 @@
         <cfset  commission=""/>
         <cfset  departmentid=""/>
         <cfset  key="editid"/>
+        <cfset FiletoUpload=""/>
+
+
+        <Cfset thisPath = expandPath('.') & '/myUploads/'>
+   <cfset f_dir = GetDirectoryFromPath(thisPath)>
+
+
+
         <cfif IsDefined("url.tide")>
             <cfset  editid="#Decrypt(URL.tide, " #key#")#"/>
             <cfif IsNumeric(editid)>
@@ -51,6 +59,7 @@
                 <cfset  salary="#getemployeebyid.salary#"/>
                 <cfset  commission="#getemployeebyid.commission#"/>
                 <cfset  departmentid="#getemployeebyid.dep_id#"/>
+                <cfset  FiletoUpload="#getemployeebyid.profilepic#"/>
             </cfif>
         </cfif>
         <div class="container">
@@ -73,7 +82,7 @@
                                     <select class="form-select" name="managerid" value="<cfoutput> #managerid# </cfoutput>" required>
                                         <cfoutput>
                                             <option value="">--select manager--</option>
-                                            <cfloop> QUERY="getallmanagers"
+                                            <cfloop QUERY="getallmanagers">
                                                 <option value="#getallmanagers.manager_id#" <cfif getallmanagers.manager_id EQ managerid> selected="selected"</cfif>>#getallmanagers.manager#(#getallmanagers.manager_id#) -
                                                          #getallmanagers.dep_name#(#getallmanagers.dep_id#)</option>
                                             </cfloop>
@@ -99,7 +108,7 @@
                                     <select class="form-select" name="departmentid" value="<cfoutput> #departmentid# </cfoutput>" required>
                                         <cfoutput>
                                             <option value="">--select department--</option>
-                                            <cfloop> QUERY="getalldepartments"
+                                            <cfloop QUERY="getalldepartments">
                                                 <option value="#getalldepartments.dep_id#" <cfif getalldepartments.dep_id EQ departmentid> selected="selected"  </cfif>>#getalldepartments.dep_name#(#getalldepartments.dep_id#)</option>
                                             </cfloop>
                                         </cfoutput>
@@ -108,7 +117,13 @@
                             </tr>
                             <tr>
                                 <td>Photo</td>
-                                <td><input type="file" name="FiletoUpload" size="45"></td>
+                                <td><input type="file" name="FiletoUpload" size="45">
+                                
+                                    <cfif FiletoUpload NEQ "">  <td>
+                                        
+                                        <img src="./myUploads/<cfoutput>#FiletoUpload#</cfoutput>" width="100" height="100"/></td>
+                                    </cfif>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="pt-3" align="center" colspan="2">
@@ -136,12 +151,14 @@
                                         <tr class="text-center">
                                             <th>Emp#ID</th>
                                             <th>NAME</th>
+                                            <th>PHOTO</th>
                                             <th>JOB</th>
                                             <th>MANAGERID</th>
                                             <th>JOIN DATE</th>
                                             <th>SALARY</th>
                                             <th>COMMISSION</th>
                                             <th>DEPARTMENT ID</th>
+
                                             <th colspan="3">ACTION</th>
                                         </tr>
                                     </thead>
@@ -150,6 +167,7 @@
                                             <tr>
                                                 <td>#getemployees.emp_id#</td>
                                                 <td>#getemployees.emp_name#</td>
+                                                <td><img src="./myUploads/#getemployees.profilepic#" width="100" height="100"/></td>
                                                 <td>#getemployees.job_name#</td>
                                                 <td>#getemployees.manager_id EQ ''? 'Top-Level Manager':getemployees.manager_id#</td>
                                                 <td>#getemployees.hire_date#</td>
