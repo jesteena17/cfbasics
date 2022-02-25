@@ -1,15 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
 <cfscript>
     variables.validMimeTypes =  {
         'application/pdf': {extension: 'pdf', application: 'Adobe Acrobat'}
